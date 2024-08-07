@@ -3,6 +3,8 @@
 SteamVR Manager is meant to be a quick-tool for enabling or disabling SteamVR. Useful to prevent it from auto-launching along side VR supported programs (VRChat, ROBLOX, Boneworks, etc).
 This is my first C# Windows Forms as I am a noob at it, so please expect some issues depending on your Operating System. I will try my best to fix any issues that, or implement any new features.
 
+![iYpj3uLVJD](https://github.com/user-attachments/assets/0babc510-aa19-4425-87e6-116afaae715f)
+
 # Current Features
 - Enabling or disabling SteamVR by simply renaming the **vrserver.exe** file
 
