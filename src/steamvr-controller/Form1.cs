@@ -18,7 +18,12 @@ namespace steamvr_controller
         public Form1()
         {
             InitializeComponent();
-            if (!ValidatePath(steamvr_path)) { steamvr_directory.Text = "SteamVR not found!"; } else { steamvr_directory.Text = steamvr_path; }
+            if (!ValidatePath(steamvr_path)) {
+                steamvr_directory.Text = "SteamVR not found!";
+            } else {
+                steamvr_directory.Text = steamvr_path;
+                if (GetEnabledStatus()) { steamvr_toggle.Text = "Disable SteamVR"; }
+            }
             this.Shown += new EventHandler(FormReady);
         }
 

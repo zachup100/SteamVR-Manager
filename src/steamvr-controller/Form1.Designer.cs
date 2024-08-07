@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             steamvr_enabled = new CheckBox();
             steamvr_directory = new TextBox();
             steamvr_enabled_label = new Label();
@@ -73,9 +74,9 @@
             // 
             // select_directory
             // 
-            select_directory.Location = new Point(264, 72);
+            select_directory.Location = new Point(278, 72);
             select_directory.Name = "select_directory";
-            select_directory.Size = new Size(129, 23);
+            select_directory.Size = new Size(115, 23);
             select_directory.TabIndex = 3;
             select_directory.Text = "Change Directory";
             select_directory.UseVisualStyleBackColor = true;
@@ -100,7 +101,7 @@
             // exit_menu_item
             // 
             exit_menu_item.Name = "exit_menu_item";
-            exit_menu_item.Size = new Size(180, 22);
+            exit_menu_item.Size = new Size(93, 22);
             exit_menu_item.Text = "Exit";
             exit_menu_item.Click += exit_menu_item_Click;
             // 
@@ -114,13 +115,13 @@
             // about_menu_item
             // 
             about_menu_item.Name = "about_menu_item";
-            about_menu_item.Size = new Size(180, 22);
+            about_menu_item.Size = new Size(107, 22);
             about_menu_item.Text = "About";
             about_menu_item.Click += about_menu_item_Click;
             // 
             // steamvr_toggle
             // 
-            steamvr_toggle.Location = new Point(130, 104);
+            steamvr_toggle.Location = new Point(136, 104);
             steamvr_toggle.Name = "steamvr_toggle";
             steamvr_toggle.Size = new Size(132, 23);
             steamvr_toggle.TabIndex = 5;
@@ -140,9 +141,11 @@
             Controls.Add(steamvr_directory);
             Controls.Add(steamvr_enabled);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "Form1";
-            Text = "SteamVR Controller";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "SteamVR Manager";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

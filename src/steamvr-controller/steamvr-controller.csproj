@@ -2,11 +2,33 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>steamvr_controller</RootNamespace>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <RootNamespace>steamvr-manager</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>steamvr-controller.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <PackageIcon>steamvr-controller.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/zachup100/SteamVR-Manager</RepositoryUrl>
+    <AssemblyName>steamvr-manager</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="steamvr-controller.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="C:\Users\Robert\Downloads\steamvr-controller.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
