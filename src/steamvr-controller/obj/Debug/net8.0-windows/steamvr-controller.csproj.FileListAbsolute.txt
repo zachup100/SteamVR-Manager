@@ -1,0 +1,17 @@
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\bin\Debug\net8.0-windows\steamvr-controller.exe
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\bin\Debug\net8.0-windows\steamvr-controller.deps.json
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\bin\Debug\net8.0-windows\steamvr-controller.runtimeconfig.json
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\bin\Debug\net8.0-windows\steamvr-controller.dll
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\bin\Debug\net8.0-windows\steamvr-controller.pdb
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr_controller.Form1.resources
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.csproj.GenerateResource.cache
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.GeneratedMSBuildEditorConfig.editorconfig
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.AssemblyInfoInputs.cache
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.AssemblyInfo.cs
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.csproj.CoreCompileInputs.cache
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.dll
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\refint\steamvr-controller.dll
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.pdb
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr-controller.genruntimeconfig.cache
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\ref\steamvr-controller.dll
+E:\Documents\GitHub\SteamVR-Controller\src\steamvr-controller\obj\Debug\net8.0-windows\steamvr_controller.About.resources
