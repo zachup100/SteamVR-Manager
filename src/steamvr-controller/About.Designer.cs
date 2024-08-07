@@ -81,8 +81,9 @@
             Controls.Add(info_label);
             Controls.Add(credits_label);
             Controls.Add(button1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "About";
-            Text = "Form2";
+            Text = "About";
             ResumeLayout(false);
             PerformLayout();
         }
