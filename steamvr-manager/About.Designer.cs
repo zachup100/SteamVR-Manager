@@ -81,6 +81,7 @@
             Controls.Add(info_label);
             Controls.Add(credits_label);
             Controls.Add(button1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;

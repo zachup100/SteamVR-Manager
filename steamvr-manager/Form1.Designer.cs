@@ -60,7 +60,7 @@
             steamvr_directory.Name = "steamvr_directory";
             steamvr_directory.Size = new Size(382, 23);
             steamvr_directory.TabIndex = 1;
-            steamvr_directory.Text = "C:\\Program Files (x86)\\Steam\\Blah\\Blah";
+            steamvr_directory.Text = "If you're seeing this, something went wrong";
             steamvr_directory.WordWrap = false;
             // 
             // steamvr_enabled_label
@@ -141,12 +141,16 @@
             Controls.Add(steamvr_directory);
             Controls.Add(steamvr_enabled);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
+            MaximumSize = new Size(421, 178);
+            MinimumSize = new Size(421, 178);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SteamVR Manager";
+            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

@@ -42,9 +42,12 @@ namespace steamvr_manager
             Config.Load(ConfigFile);
 
             var settings_steamvr_path = Config.SelectSingleNode("/Settings/steamvr_path");
-            if (settings_steamvr_path != null) {
+            if (settings_steamvr_path != null)
+            {
                 steamvr_path = Config.SelectSingleNode("/Settings/steamvr_path").InnerText;
-            } else {
+            }
+            else
+            {
                 steamvr_path = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR";
             }
 
@@ -128,7 +131,8 @@ namespace steamvr_manager
             {
                 steamvr_path = UserBrowserDialog.SelectedPath;
                 steamvr_directory.Text = steamvr_path;
-            } else
+            }
+            else
             {
                 System.Windows.Forms.MessageBox.Show("\"" + UserBrowserDialog.SelectedPath + "\" is not a valid SteamVR directory!");
             }
@@ -170,6 +174,11 @@ namespace steamvr_manager
                 steamvr_enabled.Checked = GetEnabledStatus();
                 if (steamvr_enabled.Checked) { steamvr_toggle.Text = "Disable SteamVR"; }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
