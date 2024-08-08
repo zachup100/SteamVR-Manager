@@ -8,12 +8,17 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Platforms>AnyCPU;x64</Platforms>
+    <PublishSingleFile>true</PublishSingleFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
     <ApplicationIcon>steamvr-controller.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
     <PackageIcon>steamvr-controller.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/zachup100/SteamVR-Manager</RepositoryUrl>
-    <AssemblyName>steamvr-manager</AssemblyName>
+    <AssemblyName>SteamVR Manager</AssemblyName>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
