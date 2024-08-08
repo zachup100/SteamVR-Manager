@@ -37,6 +37,7 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             exit_menu_item = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
+            check_for_updates = new ToolStripMenuItem();
             about_menu_item = new ToolStripMenuItem();
             steamvr_toggle = new Button();
             menuStrip1.SuspendLayout();
@@ -60,7 +61,7 @@
             steamvr_directory.Name = "steamvr_directory";
             steamvr_directory.Size = new Size(382, 23);
             steamvr_directory.TabIndex = 1;
-            steamvr_directory.Text = "C:\\Program Files (x86)\\Steam\\Blah\\Blah";
+            steamvr_directory.Text = "If you're seeing this, something went wrong";
             steamvr_directory.WordWrap = false;
             // 
             // steamvr_enabled_label
@@ -107,15 +108,22 @@
             // 
             // helpToolStripMenuItem
             // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { about_menu_item });
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { check_for_updates, about_menu_item });
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             helpToolStripMenuItem.Size = new Size(44, 20);
             helpToolStripMenuItem.Text = "Help";
             // 
+            // check_for_updates
+            // 
+            check_for_updates.Name = "check_for_updates";
+            check_for_updates.Size = new Size(180, 22);
+            check_for_updates.Text = "Check for updates";
+            check_for_updates.Click += check_for_updates_Click;
+            // 
             // about_menu_item
             // 
             about_menu_item.Name = "about_menu_item";
-            about_menu_item.Size = new Size(107, 22);
+            about_menu_item.Size = new Size(180, 22);
             about_menu_item.Text = "About";
             about_menu_item.Click += about_menu_item_Click;
             // 
@@ -141,9 +149,12 @@
             Controls.Add(steamvr_directory);
             Controls.Add(steamvr_enabled);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
+            MaximumSize = new Size(421, 178);
+            MinimumSize = new Size(421, 178);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SteamVR Manager";
@@ -165,5 +176,6 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem exit_menu_item;
         private Button steamvr_toggle;
+        private ToolStripMenuItem check_for_updates;
     }
 }

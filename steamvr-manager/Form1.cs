@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing.Text;
 using System.Runtime.CompilerServices;
 using System.Transactions;
+using Newtonsoft.Json.Linq;
 using System.Xml;
 
 namespace steamvr_manager
@@ -10,48 +11,21 @@ namespace steamvr_manager
     public partial class Form1 : Form
     {
 
-        private bool Is64Bit = Environment.Is64BitOperatingSystem; // Placeholder for now
-        private static String RootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "steamvr_manager");
-        private static String ConfigFile = Path.Combine(RootFolder, "user.config");
-
         About AboutForm = new About();
+        Changelog ChangelogForm = new Changelog();
+
+        private bool Is64Bit = Environment.Is64BitOperatingSystem; // Placeholder for now
         private String steamvr_path;
 
         public Form1()
         {
-            // Check to see if our folder in AppData exists
-            if (!Directory.Exists(RootFolder)) { Directory.CreateDirectory(RootFolder); }
-
-            // Check if we have our user.config file, if not create a new one
-            if (!File.Exists(ConfigFile))
-            {
-                XmlDocument newConfig = new XmlDocument();
-                XmlElement Root = newConfig.CreateElement("Settings");
-                newConfig.AppendChild(Root);
-
-                XmlElement steamvr_path = newConfig.CreateElement("steamvr_path");
-                steamvr_path.InnerText = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR\\";
-                Root.AppendChild(steamvr_path);
-
-                newConfig.Save(ConfigFile);
-                System.Windows.Forms.MessageBox.Show("Created new config file");
-            }
-
-            // Load our settings
-            XmlDocument Config = new XmlDocument();
-            Config.Load(ConfigFile);
-
-            var settings_steamvr_path = Config.SelectSingleNode("/Settings/steamvr_path");
-            if (settings_steamvr_path != null) {
-                steamvr_path = Config.SelectSingleNode("/Settings/steamvr_path").InnerText;
-            } else {
-                steamvr_path = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR";
-            }
+            Settings.Initiate();
+            steamvr_path = Settings.GetValue("steamvr_path")!;
 
             InitializeComponent();
 
             // Update the form to reflect changes based on the current settings
-            if (!ValidatePath(steamvr_path))
+            if (!ValidatePath(steamvr_path!))
             {
                 steamvr_directory.Text = "SteamVR not found!";
             }
@@ -61,7 +35,7 @@ namespace steamvr_manager
                 if (GetEnabledStatus()) { steamvr_toggle.Text = "Disable SteamVR"; }
             }
 
-            this.Shown += new EventHandler(FormReady);
+            this.Shown += new EventHandler(FormReady!);
         }
 
         // The function that will run when the Form is ready, and is shown.
@@ -83,12 +57,7 @@ namespace steamvr_manager
                     {
                         steamvr_path = FolderSelect.SelectedPath;
                         steamvr_directory.Text = FolderSelect.SelectedPath;
-
-                        var newConfig = new XmlDocument();
-                        newConfig.Load(ConfigFile);
-                        XmlNode settings_steamvr_path = newConfig.SelectSingleNode("/Settings/steamvr_path");
-                        settings_steamvr_path.InnerText = FolderSelect.SelectedPath;
-                        newConfig.Save(ConfigFile);
+                        Settings.SetValue("steamvr_path", steamvr_path);
                         break;
                     }
                     else if (Result == DialogResult.Cancel)
@@ -128,7 +97,8 @@ namespace steamvr_manager
             {
                 steamvr_path = UserBrowserDialog.SelectedPath;
                 steamvr_directory.Text = steamvr_path;
-            } else
+            }
+            else
             {
                 System.Windows.Forms.MessageBox.Show("\"" + UserBrowserDialog.SelectedPath + "\" is not a valid SteamVR directory!");
             }
@@ -170,6 +140,11 @@ namespace steamvr_manager
                 steamvr_enabled.Checked = GetEnabledStatus();
                 if (steamvr_enabled.Checked) { steamvr_toggle.Text = "Disable SteamVR"; }
             }
+        }
+
+        private void check_for_updates_Click(object sender, EventArgs e)
+        {
+            ChangelogForm.ShowDialog();
         }
     }
 }
