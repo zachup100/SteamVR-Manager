@@ -8,6 +8,8 @@ This is my first C# Windows Forms as I am a noob at it, so please expect some is
 # Current Features
 - Enabling or disabling SteamVR by simply renaming the **vrserver.exe** file
 
+If you want something added, post a request ticket [here](https://github.com/zachup100/SteamVR-Manager/issues)
+
 # Requirements
 - You will need [.NET 6.0 Desktop Environment](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.32-windows-x64-installer). Clicking that link will open the direct download link.
 
