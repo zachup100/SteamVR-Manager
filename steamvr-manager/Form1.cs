@@ -48,6 +48,8 @@ namespace steamvr_manager
                 steamvr_path = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR";
             }
 
+            InitializeComponent();
+
             // Update the form to reflect changes based on the current settings
             if (!ValidatePath(steamvr_path))
             {
@@ -59,7 +61,6 @@ namespace steamvr_manager
                 if (GetEnabledStatus()) { steamvr_toggle.Text = "Disable SteamVR"; }
             }
 
-            InitializeComponent();
             this.Shown += new EventHandler(FormReady);
         }
 
