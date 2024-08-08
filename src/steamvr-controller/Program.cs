@@ -1,4 +1,4 @@
-namespace steamvr_controller
+namespace steamvr_manager
 {
     internal static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace steamvr_controller
+﻿namespace steamvr_manager
 {
     partial class Form1
     {
@@ -143,6 +143,7 @@
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SteamVR Manager";

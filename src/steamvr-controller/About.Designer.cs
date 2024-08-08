@@ -1,4 +1,4 @@
-﻿namespace steamvr_controller
+﻿namespace steamvr_manager
 {
     partial class About
     {
@@ -82,7 +82,10 @@
             Controls.Add(credits_label);
             Controls.Add(button1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "About";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "About";
             ResumeLayout(false);
             PerformLayout();
