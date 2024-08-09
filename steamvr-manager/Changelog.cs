@@ -54,7 +54,7 @@ namespace steamvr_manager
 
                 if (get_build_selection.SelectedIndex == 0)
                 {
-                    Updates = await CheckForUpdates.FetchReleasesAsync("recent-");
+                    Updates = await CheckForUpdates.FetchReleasesAsync("");
                 }
                 else if (get_build_selection.SelectedIndex == 2)
                 {
@@ -62,7 +62,7 @@ namespace steamvr_manager
                 }
                 else
                 {
-                    Updates = await CheckForUpdates.FetchReleasesAsync("");
+                    Updates = await CheckForUpdates.FetchReleasesAsync("release-");
                 }
 
                 changelog_info.Text = Updates;
