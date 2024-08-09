@@ -13,28 +13,35 @@ namespace steamvr_manager
         {
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("User-Agent", "C# App");
-                HttpResponseMessage response = await client.GetAsync(VersionInfo.ApiUrl + "/releases");
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    String JsonResponse = await response.Content.ReadAsStringAsync();
-                    JArray Releases = JArray.Parse(JsonResponse);
-                    String LookforTag = Build;
-
-
-                    foreach (var release in Releases)
+                    client.DefaultRequestHeaders.Add("User-Agent", "C# App");
+                    HttpResponseMessage response = await client.GetAsync(VersionInfo.ApiUrl + "/releases");
+                    if (response.IsSuccessStatusCode)
                     {
-                        string tagName = release["tag_name"]!.ToString();
-                        if (tagName.StartsWith(LookforTag))
+                        String JsonResponse = await response.Content.ReadAsStringAsync();
+                        JArray Releases = JArray.Parse(JsonResponse);
+                        String LookforTag = Build;
+
+
+                        foreach (var release in Releases)
                         {
-                            string releaseNotes = release["body"]!.ToString();
-                            return $"Latest {Build.ToUpper().Substring(0, Build.Length-1)} Build found: {tagName}\n \n{releaseNotes}";
+                            string tagName = release["tag_name"]!.ToString();
+                            if (tagName.StartsWith(LookforTag))
+                            {
+                                string releaseNotes = release["body"]!.ToString();
+                                if (Build.Length > 0) { Build = " " + Build.Substring(0, Build.Length - 1); }
+                                return $"Latest{Build.ToUpper()} Build found: {tagName}\n \n{releaseNotes}";
+                            }
                         }
                     }
+                    else
+                    {
+                        return $"Failed to make API request: {response.StatusCode}";
+                    }
                 }
-                else
-                {
-                    return $"Failed to make API request: {response.StatusCode}";
+                catch (Exception e) {
+                    System.Windows.Forms.MessageBox.Show(e.Message);
                 }
 
             }
