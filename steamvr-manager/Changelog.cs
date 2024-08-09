@@ -23,6 +23,7 @@ namespace steamvr_manager
         private static bool CooldownActive = false;
         private static int Cooldown = 2000;
 
+        #pragma warning disable CS0162 // Disable unreachable code warning, since it'll be reachable when changing VersionInfo.Version
         public Changelog()
         {
             InitializeComponent();
@@ -89,9 +90,7 @@ namespace steamvr_manager
             {
                 CooldownActive = false;
                 CooldownTimer!.Dispose();
-                MessageBox.Show("pre-button");
                 check_for_updates.Enabled = true;
-                MessageBox.Show("button");
             }
         }
     }
