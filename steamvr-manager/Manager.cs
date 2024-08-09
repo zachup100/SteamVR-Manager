@@ -72,6 +72,7 @@ namespace steamvr_manager
             if (Result == DialogResult.OK && ValidatePath(Dialog.SelectedPath))
             {
                 steamvr_path = Dialog.SelectedPath;
+                FullPath = steamvr_path + Win64;
                 Settings.SetValue("steamvr_path", Dialog.SelectedPath);
                 return (true, steamvr_path);
             }
@@ -88,6 +89,7 @@ namespace steamvr_manager
                     if (Result == DialogResult.OK && ValidatePath(Dialog.SelectedPath))
                     {
                         steamvr_path = Dialog.SelectedPath;
+                        FullPath = steamvr_path + Win64;
                         Settings.SetValue("steamvr_path", Dialog.SelectedPath);
                         return (true, steamvr_path);
                     }
