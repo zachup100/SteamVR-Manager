@@ -42,6 +42,7 @@ namespace steamvr_manager
                 get_build_selection.SelectedIndex = 0;
             }
         }
+
         private async void check_for_updates_Click(object sender, EventArgs e)
         {
             if (!CooldownActive)
