@@ -116,14 +116,14 @@
             // check_for_updates
             // 
             check_for_updates.Name = "check_for_updates";
-            check_for_updates.Size = new Size(180, 22);
+            check_for_updates.Size = new Size(170, 22);
             check_for_updates.Text = "Check for updates";
             check_for_updates.Click += check_for_updates_Click;
             // 
             // about_menu_item
             // 
             about_menu_item.Name = "about_menu_item";
-            about_menu_item.Size = new Size(180, 22);
+            about_menu_item.Size = new Size(170, 22);
             about_menu_item.Text = "About";
             about_menu_item.Click += about_menu_item_Click;
             // 
