@@ -16,7 +16,8 @@ namespace steamvr_manager
 
         private static Dictionary<string, string> DefaultSettings = new Dictionary<string, string>
         {
-            { "steamvr_path", "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR\\" }
+            { "steamvr_path", "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR\\" },
+            { "use_dark_theme", "False" }
         };
 
 
@@ -122,7 +123,7 @@ namespace steamvr_manager
             return false;
         }
 
-        public static String? GetValue(String key)
+        public static object GetValue(String? key)
         {
             XmlDocument Config = new XmlDocument();
 
@@ -131,12 +132,17 @@ namespace steamvr_manager
                 Config.Load(ConfigFile);
 
                 XmlNode? Root = Config.SelectSingleNode("Settings");
-                if (Root == null) { return null; }
+                if (Root == null) { return null!; }
 
-                XmlNode? Setting = Root.SelectSingleNode(key);
-                if (Setting == null) { return null; }
+                XmlNode? Setting = Root.SelectSingleNode(key!);
+                if (Setting == null) { return null!; }
                 String value = Setting.InnerText;
                 Config = null!;
+                if (value == "True" || value == "False")
+                {
+                    bool Result = bool.Parse(value);
+                    return Result;
+                }
                 return value;
             }
             catch (XmlException ex)
@@ -151,7 +157,7 @@ namespace steamvr_manager
                 System.Windows.Forms.MessageBox.Show($"Failed to load Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
             }
 
-            return null;
+            return null!;
         }
 
         private static void CreateDefaultConfig()
