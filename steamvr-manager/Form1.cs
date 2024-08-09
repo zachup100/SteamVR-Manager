@@ -45,12 +45,14 @@ namespace steamvr_manager
             string steamvr_path = Manager.steamvr_path;
             if (!Manager.ValidatePath(Manager.steamvr_path))
             {
+                System.Windows.Forms.MessageBox.Show("Please select where your SteamVR install is located!");
                 var (Success, Path) = Manager.AskForPath(false);
                 if (Success) { steamvr_path = Path; }
             }
 
             // Separate if statement just in case the user chooses not to tell the program where SteamVR is located
-            if (Manager.ValidatePath(Manager.steamvr_path)) {
+            if (Manager.ValidatePath(Manager.steamvr_path))
+            {
                 steamvr_directory.Text = steamvr_path;
                 steamvr_enabled.Checked = Manager.IsEnabled();
                 steamvr_toggle.Text = Manager.IsEnabled() ? "Disable SteamVR" : "Enable SteamVR";
