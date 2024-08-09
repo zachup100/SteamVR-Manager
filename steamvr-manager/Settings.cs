@@ -123,6 +123,7 @@ namespace steamvr_manager
             return false;
         }
 
+        // Returns the value of a given key, if no key is found we'll return null
         public static object GetValue(String? key)
         {
             XmlDocument Config = new XmlDocument();
@@ -160,6 +161,7 @@ namespace steamvr_manager
             return null!;
         }
 
+        // Generates a default config using Dictionary DefaultSettings
         private static void CreateDefaultConfig()
         {
             XmlDocument Config = new XmlDocument();

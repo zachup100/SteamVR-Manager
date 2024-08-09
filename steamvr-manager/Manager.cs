@@ -12,6 +12,7 @@ namespace steamvr_manager
         private static string Win64 = "\\bin\\win64";
         private static string FullPath = steamvr_path + Win64;
 
+        // Returns vrserver.exe state, if it's renamed to vrserver.exe.disabled returns false
         public bool IsEnabled()
         {
             try
@@ -26,6 +27,7 @@ namespace steamvr_manager
             return false;
         }
 
+        // Set the vrserver.exe state, if the (bool State) is true, we'll rename it to vrserver.exe otherwise vrserver.exe.disabled
         public bool SetEnabled(bool State)
         {
 
@@ -33,6 +35,7 @@ namespace steamvr_manager
             {
                 if (IsEnabled() && State == false)
                 {
+                    // Removes vrserver.exe.disabled if we already have a vrserver.exe to prevent problems
                     if (File.Exists(FullPath + "\\vrserver.exe.disabled")) { File.Delete(FullPath + "\\vrserver.exe.disabled"); }
                     File.Move(FullPath + "\\vrserver.exe", FullPath + "\\vrserver.exe.disabled");
                     return false;
@@ -57,11 +60,10 @@ namespace steamvr_manager
             return IsEnabled();
         }
 
+        // Prompt the user for their SteamVR Installation location
+        // If AskOnce is true, we'll re-open the prompt until they select the right directory or clicks 'Cancel'
         public (bool, string?) AskForPath(bool AskOnce)
         {
-            //MainPath = steamvr_path + Win64;
-            //System.Windows.Forms.MessageBox.Show("Please select where your SteamVR folder is located");
-
             FolderBrowserDialog Dialog = new FolderBrowserDialog();
             DialogResult Result = DialogResult.None;
             Dialog.ShowNewFolderButton = false;
@@ -100,6 +102,7 @@ namespace steamvr_manager
             return (false, null);
         }
 
+        // Check if the path contains the correct files if it's a SteamVR Folder, returns true if those files exist
         public bool ValidatePath(String path)
         {
             try
