@@ -28,7 +28,7 @@ namespace steamvr_manager
                         if (tagName.StartsWith(LookforTag))
                         {
                             string releaseNotes = release["body"]!.ToString();
-                            return $"Latest {Build.ToUpper()} Build found: {tagName}\n \n{releaseNotes}";
+                            return $"Latest {Build.ToUpper().Substring(0, Build.Length-1)} Build found: {tagName}\n \n{releaseNotes}";
                         }
                     }
                 }
