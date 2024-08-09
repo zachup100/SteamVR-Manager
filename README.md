@@ -5,6 +5,9 @@ This is my first C# Windows Forms as I am a noob at it, so please expect some is
 
 ![iYpj3uLVJD](https://github.com/user-attachments/assets/0babc510-aa19-4425-87e6-116afaae715f)
 
+![explorer_bjNGCd6mZx](https://github.com/user-attachments/assets/2b8583a3-1ee0-4d82-937d-050d7f19cfa5)
+
+
 # Current Features
 - Enabling or disabling SteamVR by simply renaming the **vrserver.exe** file
 
