@@ -16,12 +16,10 @@ namespace steamvr_manager
         About AboutForm = new About();
 
         private bool Is64Bit = Environment.Is64BitOperatingSystem; // Placeholder for now
-        //private String steamvr_path;
 
         public Form1()
         {
             Settings.Initiate();
-
             InitializeComponent();
 
             // Update the form to reflect changes based on the current settings
@@ -51,6 +49,7 @@ namespace steamvr_manager
                 if (Success) { steamvr_path = Path; }
             }
 
+            // Separate if statement just in case the user chooses not to tell the program where SteamVR is located
             if (Manager.ValidatePath(Manager.steamvr_path)) {
                 steamvr_directory.Text = steamvr_path;
                 steamvr_enabled.Checked = Manager.IsEnabled();
@@ -67,14 +66,18 @@ namespace steamvr_manager
             return false;
         }
 
-        // Check if the program has found the vrserver.exe, usually meaning it's enabled
-
         private void select_directory_Click(object sender, EventArgs e)
         {
-            Manager.AskForPath(true);
+            // Prompts the user once for their SteamVR directory, and update accordingly
+            var (Success, Path) = Manager.AskForPath(true);
+            if (Success)
+            {
+                steamvr_enabled.Checked = Manager.IsEnabled();
+                steamvr_toggle.Text = Manager.IsEnabled() ? "Disable SteamVR" : "Enable SteamVR";
+            }
         }
 
-        // Close the application
+        // Close the application, not sure what to put in that menu for now
         private void exit_menu_item_Click(object sender, EventArgs e)
         {
             Application.Exit();
