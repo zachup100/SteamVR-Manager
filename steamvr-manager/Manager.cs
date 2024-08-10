@@ -8,7 +8,7 @@ namespace steamvr_manager
 {
     internal class Manager
     {
-        public static string steamvr_path = Settings.GetValue("steamvr_path").ToString()!;
+        public static string steamvr_path = UserSettings.GetValue("steamvr_path").ToString()!;
         private static string Win64 = "\\bin\\win64";
         private static string FullPath = steamvr_path + Win64;
 
@@ -73,7 +73,7 @@ namespace steamvr_manager
             {
                 steamvr_path = Dialog.SelectedPath;
                 FullPath = steamvr_path + Win64;
-                Settings.SetValue("steamvr_path", Dialog.SelectedPath);
+                UserSettings.SetValue("steamvr_path", Dialog.SelectedPath);
                 return (true, steamvr_path);
             }
             else
@@ -90,7 +90,7 @@ namespace steamvr_manager
                     {
                         steamvr_path = Dialog.SelectedPath;
                         FullPath = steamvr_path + Win64;
-                        Settings.SetValue("steamvr_path", Dialog.SelectedPath);
+                        UserSettings.SetValue("steamvr_path", Dialog.SelectedPath);
                         return (true, steamvr_path);
                     }
                     else if (Result == DialogResult.Cancel) { break; }
