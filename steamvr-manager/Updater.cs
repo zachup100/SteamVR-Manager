@@ -23,7 +23,6 @@ namespace steamvr_manager
                         JArray Releases = JArray.Parse(JsonResponse);
                         String LookforTag = Build;
 
-
                         foreach (var release in Releases)
                         {
                             string tagName = release["tag_name"]!.ToString();

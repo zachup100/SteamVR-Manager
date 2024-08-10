@@ -8,10 +8,10 @@ namespace steamvr_manager
 {
     internal class VersionInfo
     {
-        public const String Version = "0.1.3";
-        public const String Build = "nightly";
-        public const String Author = "zachup100";
-        public const String Repository = "steamvr-manager";
-        public const String ApiUrl = $"https://api.github.com/repos/{Author}/{Repository}";
+        public const string Version = "0.1.3";
+        public const string Build = "nightly";
+        public const string Author = "zachup100";
+        public const string Repository = "steamvr-manager";
+        public const string ApiUrl = $"https://api.github.com/repos/{Author}/{Repository}";
     }
 }
