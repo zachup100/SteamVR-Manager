@@ -50,6 +50,13 @@ namespace steamvr_manager
             int color = ColorTranslator.ToWin32(this.BackColor);
             DwmSetWindowAttribute(this.Handle, color, ref color, sizeof(int));
 
+            this.StartPosition = FormStartPosition.Manual;
+
+            Screen primaryScreen = Screen.PrimaryScreen;
+            Rectangle screenBounds = primaryScreen.Bounds;
+            int formWidth = this.Width;
+            int formHeight = this.Height;
+            this.Location = new Point((screenBounds.Width - (formWidth+100)) / 2, (screenBounds.Height - (formHeight-50)) / 2);
 
             // end of test
             UserSettings.Initiate();
