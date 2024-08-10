@@ -23,6 +23,7 @@ namespace steamvr_manager
         private static bool CooldownActive = false;
         private static int Cooldown = 2000;
 
+        #pragma warning disable CS0162 // Disable unreachable code warning, since it'll be reachable when changing VersionInfo.Version
         public Changelog()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace steamvr_manager
                 get_build_selection.SelectedIndex = 0;
             }
         }
+
         private async void check_for_updates_Click(object sender, EventArgs e)
         {
             if (!CooldownActive)
@@ -52,7 +54,7 @@ namespace steamvr_manager
 
                 if (get_build_selection.SelectedIndex == 0)
                 {
-                    Updates = await CheckForUpdates.FetchReleasesAsync("recent-");
+                    Updates = await CheckForUpdates.FetchReleasesAsync("");
                 }
                 else if (get_build_selection.SelectedIndex == 2)
                 {
@@ -60,7 +62,7 @@ namespace steamvr_manager
                 }
                 else
                 {
-                    Updates = await CheckForUpdates.FetchReleasesAsync("");
+                    Updates = await CheckForUpdates.FetchReleasesAsync("release-");
                 }
 
                 changelog_info.Text = Updates;
@@ -89,9 +91,7 @@ namespace steamvr_manager
             {
                 CooldownActive = false;
                 CooldownTimer!.Dispose();
-                MessageBox.Show("pre-button");
                 check_for_updates.Enabled = true;
-                MessageBox.Show("button");
             }
         }
     }

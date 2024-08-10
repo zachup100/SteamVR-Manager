@@ -1,180 +1,38 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+using System.Windows.Forms;
 
 namespace steamvr_manager
 {
-    internal class Settings
+    public partial class Settings : Form
     {
-        private static String RootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "steamvr_manager");
-        private static String ConfigFile = Path.Combine(RootFolder, "user.config");
+        Themes Themes = new Themes();
 
-        private static Dictionary<string, string> DefaultSettings = new Dictionary<string, string>
+        public Settings()
         {
-            { "steamvr_path", "C:\\Program Files (x86)\\Steam\\steamapps\\common\\SteamVR\\" }
-        };
-
-
-        // Load config into memory
-        public static void Initiate()
-        {
-            // Create new steamvr_manager Directory if it doesn't exist
-            if (!Directory.Exists(RootFolder)) { Directory.CreateDirectory(RootFolder); }
-
-            // Auto generate new config file based on Dictionary DefaultSettings
-            if (!File.Exists(ConfigFile))
-            {
-                CreateDefaultConfig();
-            }
-            else
-            {
-
-                XmlDocument Config = new XmlDocument();
-                try
-                {
-                    Config.Load(ConfigFile);
-
-                    XmlNode? Root = Config.SelectSingleNode("Settings");
-                    if (Root == null) { Root = Config.CreateElement("Settings"); }
-
-                    // Check for any missing settings from ConfigFile
-                    foreach (KeyValuePair<string, string> Index in DefaultSettings)
-                    {
-                        XmlNode? Setting = Root.SelectSingleNode($"{Index.Key}");
-                        if (Setting == null)
-                        {
-                            XmlElement new_setting = Config.CreateElement($"{Index.Key}");
-                            new_setting.InnerText = Index.Value;
-                            Root.AppendChild(new_setting);
-                        }
-                    }
-
-                    try
-                    {
-                        Config.Save(ConfigFile);
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show($"Failed to save Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
-                    }
-                }
-                catch (XmlException ex)
-                {
-                    if (File.Exists(ConfigFile + ".backup")) { File.Delete(ConfigFile + ".backup"); }
-                    File.Move(ConfigFile, ConfigFile + ".backup");
-                    CreateDefaultConfig();
-                    System.Windows.Forms.MessageBox.Show($"Failed to load Settings file, your old settings file was renamed to preserve it.\n \n Exception:\n{ex}");
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show($"Failed to load Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
-                }
-            }
+            InitializeComponent();
+            this.Shown += onWindowShown;
         }
 
-        // Overwrite key in config with a new value
-        public static bool SetValue(String key, String value)
+        private void theme_list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            XmlDocument Config = new XmlDocument();
-
-            try
-            {
-                Config.Load(ConfigFile);
-
-                XmlNode? Root = Config.SelectSingleNode("Settings");
-                if (Root == null) { return false; }
-
-                XmlNode? Setting = Root.SelectSingleNode(key);
-                if (Setting == null) { return false; }
-
-                if (Setting.InnerText != value)
-                {
-                    Setting.InnerText = value;
-                    try
-                    {
-                        Config.Save(ConfigFile);
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show($"Failed to save Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
-                    }
-                }
-
-                return true;
-            }
-            catch (XmlException ex)
-            {
-                if (File.Exists(ConfigFile + ".backup")) { File.Delete(ConfigFile + ".backup"); }
-                File.Move(ConfigFile, ConfigFile + ".backup");
-                CreateDefaultConfig();
-                System.Windows.Forms.MessageBox.Show($"Failed to load Settings file, your old settings file was renamed to preserve it.\n \n Exception:\n{ex}");
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Failed to load Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
-            }
-
-            return false;
+            string Selected = theme_list.SelectedItem.ToString()!;
+            Themes.ApplyTheme(Selected);
+            UserSettings.SetValue("use_theme", Selected);
         }
 
-        public static String? GetValue(String key)
+        private void onWindowShown(object sender, EventArgs e)
         {
-            XmlDocument Config = new XmlDocument();
-
-            try
-            {
-                Config.Load(ConfigFile);
-
-                XmlNode? Root = Config.SelectSingleNode("Settings");
-                if (Root == null) { return null; }
-
-                XmlNode? Setting = Root.SelectSingleNode(key);
-                if (Setting == null) { return null; }
-                String value = Setting.InnerText;
-                Config = null!;
-                return value;
-            }
-            catch (XmlException ex)
-            {
-                if (File.Exists(ConfigFile + ".backup")) { File.Delete(ConfigFile + ".backup"); }
-                File.Move(ConfigFile, ConfigFile + ".backup");
-                CreateDefaultConfig();
-                System.Windows.Forms.MessageBox.Show($"Failed to load Settings file, your old settings file was renamed to preserve it.\n \n Exception:\n{ex}");
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Failed to load Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
-            }
-
-            return null;
+            theme_list.Items.Clear();
+            List<string> ThemesList = Themes.ListThemes()!;
+            ThemesList.ForEach(theme => { theme_list.Items.Add(theme); });
         }
 
-        private static void CreateDefaultConfig()
-        {
-            XmlDocument Config = new XmlDocument();
-            XmlElement Root = Config.CreateElement("Settings");
-            Config.AppendChild(Root);
-
-            foreach (KeyValuePair<string, string> Index in DefaultSettings)
-            {
-                XmlElement new_setting = Config.CreateElement($"{Index.Key}");
-                new_setting.InnerText = Index.Value;
-                Root.AppendChild(new_setting);
-            }
-
-            try
-            {
-                Config.Save(ConfigFile);
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Failed to create Default Settings file due to an Uncaught Exception please tread carefully!\n \n Exception:\n{ex}");
-            }
-        }
     }
 }

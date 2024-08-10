@@ -1,6 +1,6 @@
 ﻿namespace steamvr_manager
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             steamvr_enabled = new CheckBox();
             steamvr_directory = new TextBox();
             steamvr_enabled_label = new Label();
             select_directory = new Button();
-            menuStrip1 = new MenuStrip();
-            exitToolStripMenuItem = new ToolStripMenuItem();
+            topbar = new MenuStrip();
+            topbar_file_dropdown = new ToolStripMenuItem();
+            settings = new ToolStripMenuItem();
             exit_menu_item = new ToolStripMenuItem();
-            helpToolStripMenuItem = new ToolStripMenuItem();
+            topbar_help_dropdown = new ToolStripMenuItem();
             check_for_updates = new ToolStripMenuItem();
             about_menu_item = new ToolStripMenuItem();
             steamvr_toggle = new Button();
-            menuStrip1.SuspendLayout();
+            topbar.SuspendLayout();
             SuspendLayout();
             // 
             // steamvr_enabled
@@ -83,35 +84,43 @@
             select_directory.UseVisualStyleBackColor = true;
             select_directory.Click += select_directory_Click;
             // 
-            // menuStrip1
+            // topbar
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { exitToolStripMenuItem, helpToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(405, 24);
-            menuStrip1.TabIndex = 4;
-            menuStrip1.Text = "menuStrip1";
+            topbar.BackColor = Color.FromArgb(238, 238, 238);
+            topbar.Items.AddRange(new ToolStripItem[] { topbar_file_dropdown, topbar_help_dropdown });
+            topbar.Location = new Point(0, 0);
+            topbar.Name = "topbar";
+            topbar.Size = new Size(405, 24);
+            topbar.TabIndex = 4;
+            topbar.Text = "menuStrip1";
             // 
-            // exitToolStripMenuItem
+            // topbar_file_dropdown
             // 
-            exitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exit_menu_item });
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(37, 20);
-            exitToolStripMenuItem.Text = "File";
+            topbar_file_dropdown.DropDownItems.AddRange(new ToolStripItem[] { settings, exit_menu_item });
+            topbar_file_dropdown.Name = "topbar_file_dropdown";
+            topbar_file_dropdown.Size = new Size(37, 20);
+            topbar_file_dropdown.Text = "File";
+            // 
+            // settings
+            // 
+            settings.Name = "settings";
+            settings.Size = new Size(180, 22);
+            settings.Text = "Settings";
+            settings.Click += settings_Click;
             // 
             // exit_menu_item
             // 
             exit_menu_item.Name = "exit_menu_item";
-            exit_menu_item.Size = new Size(93, 22);
+            exit_menu_item.Size = new Size(180, 22);
             exit_menu_item.Text = "Exit";
             exit_menu_item.Click += exit_menu_item_Click;
             // 
-            // helpToolStripMenuItem
+            // topbar_help_dropdown
             // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { check_for_updates, about_menu_item });
-            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(44, 20);
-            helpToolStripMenuItem.Text = "Help";
+            topbar_help_dropdown.DropDownItems.AddRange(new ToolStripItem[] { check_for_updates, about_menu_item });
+            topbar_help_dropdown.Name = "topbar_help_dropdown";
+            topbar_help_dropdown.Size = new Size(44, 20);
+            topbar_help_dropdown.Text = "Help";
             // 
             // check_for_updates
             // 
@@ -137,29 +146,29 @@
             steamvr_toggle.UseVisualStyleBackColor = true;
             steamvr_toggle.Click += steamvr_toggle_Click;
             // 
-            // Form1
+            // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Window;
+            BackColor = Color.White;
             ClientSize = new Size(405, 139);
             Controls.Add(steamvr_toggle);
             Controls.Add(select_directory);
             Controls.Add(steamvr_enabled_label);
             Controls.Add(steamvr_directory);
             Controls.Add(steamvr_enabled);
-            Controls.Add(menuStrip1);
+            Controls.Add(topbar);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MainMenuStrip = menuStrip1;
+            MainMenuStrip = topbar;
             MaximizeBox = false;
             MaximumSize = new Size(421, 178);
             MinimumSize = new Size(421, 178);
-            Name = "Form1";
+            Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SteamVR Manager";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            topbar.ResumeLayout(false);
+            topbar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -170,12 +179,13 @@
         private TextBox steamvr_directory;
         private Label steamvr_enabled_label;
         private Button select_directory;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem helpToolStripMenuItem;
+        private MenuStrip topbar;
+        private ToolStripMenuItem topbar_help_dropdown;
         private ToolStripMenuItem about_menu_item;
-        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem topbar_file_dropdown;
         private ToolStripMenuItem exit_menu_item;
         private Button steamvr_toggle;
         private ToolStripMenuItem check_for_updates;
+        private ToolStripMenuItem settings;
     }
 }
